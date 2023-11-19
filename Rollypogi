@@ -1,0 +1,157 @@
+NS='dns.ssh-sg-3.vpnsvr.net'
+NS1='sg3dns.mainssh.com'
+NS2='dns.frs-2.optnl.com'
+NS3='sg2ray-dns.mainssh.com'
+NS4='ns-sg3dns.srvdns.us'
+NS5='ns-ph1.vpnjantit.com'
+NS6='ns-ph2.vpnjantit.com'
+NS7='ns-ph3.vpnjantit.com'
+NS8='ns-ph4.vpnjantit.com'
+NS9='ns-ph5.vpnjantit.com'
+NS10='ns-ph6.vpnjantit.com'
+NS11='ns-ph7.vpnjantit.com'
+NS12='ns-ph8.vpnjantit.com'
+NS13='ns-premiph.vpnjantit.com'
+NS14='ns-premiph2.vpnjantit.com'
+NS15='ns-premiph3.vpnjantit.com'
+NS16='dns.xs-1.optnl.com'
+NS17='dns.xs-2.optnl.com'
+NS18='dns.sgs-3.optnl.com'
+NS19='dns.sgs-2.optnl.com'
+NS20='dns.sgs-4.optnl.com'
+NS21='ns-sg1.slwdns.xyz'
+NS22='ns-sg2.slwdns.xyz'
+NS23='ns-jp1.slwdns.xyz'
+NS24='ns-jp1.vpnjantit.com'
+NS25='ns-jp2.vpnjantit.com'
+NS26='ns-jp3.vpnjz.com'
+NS27='ns-jp6.vpnjz.com'
+NS28='ns-premijp1.vpnjz.com'
+NS29='ns-sg10.vpnjantit.com'
+NS30='ns-sg11.vpnjz.com'
+NS31='ns-sg2.vpnjz.com'
+NS32='ns-sg9.vpnjantit.com'
+NS33='ns-sggs4.vpnjantit.com'
+A='dns.ssh-sg-3.vpnsvr.net'
+
+
+LOOP_DELAY=5
+
+declare -a HOSTS=('124.6.181.36' '124.6.181.20' '124.6.181.12')
+DIG_EXEC="DEFAULT"
+
+CUSTOM_DIG=/data/data/com.termux/files/home/go/bin/fastdig
+
+######################################
+######################################
+######################################
+######################################
+######################################
+VER=0.1
+case "${DIG_EXEC}" in
+ DEFAULT|D)
+ _DIG="$(command -v dig)"
+ ;;
+ CUSTOM|C)
+ _DIG="${CUSTOM_DIG}"
+ ;;
+esac
+if [ ! $(command -v ${_DIG}) ]; then
+ printf "%b" "Dig command failed to run, " \
+ "please install dig(dnsutils) or check " \
+ "\$DIG_EXEC & \$CUSTOM_DIG variable inside $( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )/$(basename "$0") file.\n" && exit 1
+fi
+endscript() {
+ unset NS A LOOP_DELAY HOSTS _DIG DIG_EXEC CUSTOM_DIG T R M
+ exit 1
+}
+trap endscript 2 15
+check(){
+ for ((i=0; i<"${#HOSTS[*]}"; i++)); do
+  for R in "${NS}" "${A}" "${NS1}" "${A1}" "${NS2}" "${A2}" "${NS3}" "${A3}"; do
+   T="${HOSTS[$i]}"
+     $(timeout -k .3 .3 ${_DIG} @${T} ${R})  && M=31 || M=32;
+   echo -e "\e[1;${M}m\$ R:${R} D:${T}\e[0m"
+   unset T R M
+  done
+ done
+}
+echo "DNSTT Keep-Alive script <Discord @civ3>"
+echo -e "DNS List: [\e[1;34m${HOSTS[*]}\e[0m]"
+echo "CTRL + C to close script"
+ "${LOOP_DELAY}" -eq 1  && let "LOOP_DELAY++";
+case "${@}" in
+ loop|l)
+ echo "Script loop: ${LOOP_DELAY} seconds"
+ while true; do
+  check
+  echo '.--. .-.. . .- ... .     .-- .- .. -'
+  sleep ${LOOP_DELAY}
+ done
+ ;;
+ *)
+ check
+ ;;
+esac
+exit 0NS1='james.ubuntu.sardinas.cf'
+
+
+LOOP_DELAY=5
+
+declare -a HOSTS=('124.6.181.36' '124.6.181.20' '124.6.181.12')
+DIG_EXEC="DEFAULT"
+
+CUSTOM_DIG=/data/data/com.termux/files/home/go/bin/fastdig
+
+######################################
+######################################
+######################################
+######################################
+######################################
+VER=0.1
+case "${DIG_EXEC}" in
+ DEFAULT|D)
+ _DIG="$(command -v dig)"
+ ;;
+ CUSTOM|C)
+ _DIG="${CUSTOM_DIG}"
+ ;;
+esac
+if [ ! $(command -v ${_DIG}) ]; then
+ printf "%b" "Dig command failed to run, " \
+ "please install dig(dnsutils) or check " \
+ "\$DIG_EXEC & \$CUSTOM_DIG variable inside $( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )/$(basename "$0") file.\n" && exit 1
+fi
+endscript() {
+ unset NS A LOOP_DELAY HOSTS _DIG DIG_EXEC CUSTOM_DIG T R M
+ exit 1
+}
+trap endscript 2 15
+check(){
+ for ((i=0; i<"${#HOSTS[*]}"; i++)); do
+  for R in "${NS}" "${A}" "${NS1}" "${A1}" "${NS2}" "${A2}" "${NS3}" "${A3}"; do
+   T="${HOSTS[$i]}"
+     $(timeout -k .3 .3 ${_DIG} @${T} ${R})  && M=31 || M=32;
+   echo -e "\e[1;${M}m\$ R:${R} D:${T}\e[0m"
+   unset T R M
+  done
+ done
+}
+echo "DNSTT Keep-Alive script <Discord @civ3>"
+echo -e "DNS List: [\e[1;34m${HOSTS[*]}\e[0m]"
+echo "CTRL + C to close script"
+ "${LOOP_DELAY}" -eq 1  && let "LOOP_DELAY++";
+case "${@}" in
+ loop|l)
+ echo "Script loop: ${LOOP_DELAY} seconds"
+ while true; do
+  check
+  echo '.--. .-.. . .- ... .     .-- .- .. -'
+  sleep ${LOOP_DELAY}
+ done
+ ;;
+ *)
+ check
+ ;;
+esac
+exit 0-script
